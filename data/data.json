@@ -1,0 +1,101 @@
+[
+  {
+    "companies": [
+      {
+        "name": "UCB",
+        "topics": [
+          {
+            "summary": "UCB's stock reached a new one-year high following positive news about its drug Bimzelx. The drug reportedly outperformed a competitor in HS trials, leading to a significant surge in UCB's share price.",
+            "related_articles": [
+              {
+                "id": 3,
+                "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPZTQ2bGdET0hBcFhDRDFwSURVcEtURk9WdFE3VE5oTWhsdUpoZElXbzVPWFJGWkNpRkYxWm5HWGFiUWxHZDVfb3NQQkN3V2dTTlVaSXYtXzFJem1SVjlQWDJsMC1nQkdjOTN4V0p5OVN6a1loU3RpZFE1MFZiVWw0Nm5WV19lUnl0djlPbUZYeDZYa0JMc3pYT2RjNWhQV3FWSFltNjlCRDVJME1tMUJmSnc1NVU?oc=5"
+              },
+              {
+                "id": 5,
+                "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxObXJ4eXRDQlp5cnZLUXJ5OW5CaEJoN09sVUJRX1I3RnBGV19Bd3lVZlgwY3N3ek4xQ1RVeWNqOGpBc1lmeXc2b3R3aUtyUTlwWEFoZmFBMzBpeHFuQjZaVl81TE02SDBLbmlJbTNDOVd6dUIyQUxPTVFNYmZ2eG1YXzZqYzdoRmNwMllreDN5MWw1bUFlX21VNXUtak9WcEJmeGYzM0RPTXlYZm1UeXREUjVpaGV0eFdFX0hEVWFSM0xoaDg?oc=5"
+              }
+            ]
+          },
+          {
+            "summary": "UCB's share price experienced a significant increase, described as soaring to record levels. This surge occurred in contrast to a rival company, MoonLake, whose stock crashed due to trial data.",
+            "related_articles": [
+              {
+                "id": 1,
+                "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPWnVDWmEzS3RHQmJmQ0RDSDdPb19tLW05T1hPbDdxVl9BVEVuQVBUVHJmaEl5RDlBNXdaLVZvWG9VRWtnaFd2d0ZfV2lTeFIxUDJ3QmMwV3pXQWJBTVl4bWdiQ000NWhQNkl5ZXlmTzliWklDeXdJSVdUNEtodjZXOVV0QQ?oc=5"
+              },
+              {
+                "id": 2,
+                "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBDRFZfWnhJRnNGeUhpcS1rYjd1YTBHd1hMOWFyNmtPZTBqRXBnUWxUa1c1LXhWVlNkdXZQS2VDRVg5SUZRUXVRVU1iTUpFU1NTZXJlY1A4WHJqNVdRZW9Sc05SeDY4VjU2U1lrOG9nWQ?oc=5"
+              }
+            ]
+          },
+          {
+            "summary": "TD Cowen has reiterated a 'Buy' rating for UCB stock. The analyst firm's positive outlook is attributed to the potential of the drug Bimzelx.",
+            "related_articles": [
+              {
+                "id": 6,
+                "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPdEpkaldnNERBZ3dIWVZFNV9RS29wRjlVWk0taGtMYkxTTTRXa3lNT1FmdGlzQlJTVXZyZHhsUVNoeDlsVnFKdlZmZTgzb2dmdHdDU3ViNVh3MDEtSExmUHdrMGthNE8xOXlPZmxUV1ZfeHJDb0NzZ21seXY0Y3IwV3d3eklGZzYzUllkVlhrV1YtYl9wWl8wRVE2SmdBMnQtcXBwU1J1MjFuaFJtZWI1NnpXSkR3LXFfSDZrY0lnTjRmTDlNWGc?oc=5"
+              }
+            ]
+          },
+          {
+            "summary": "UCB has inaugurated its 186th sub-branch in Teknaf.",
+            "related_articles": [
+              {
+                "id": 4,
+                "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQNW1yNkpYX09PUWFMenVWYk0zanFYZUVKSENsd09ySmk3UW45cFVkcEhWdHNfMWd3MFdHT1pMOTl2dzI3b2FldjRFRFh5R0p5NnVVVFBYMTJ0UWw4SVk4R1YwUFRaOGJRbWd2UU5KYzRtRmpYTk9IR0VFX3NUZ2tSTHF3X2xMZHNzOW1CYlEtbzE?oc=5"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Pantera",
+        "topics": [
+          {
+            "summary": "Pantera's FOH (Front of House) engineer provided educational insights to CRAS students during a concert. This event highlights Pantera's engagement with audio education and aspiring professionals.",
+            "related_articles": [
+              {
+                "id": 7,
+                "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPSG9ad0poVmtBc2Y0d3BlRlI5QUZoTll5blVqWEEwM0EyakRYOEx2TkVrYjYxaFFuR3pXRU9zTVlkejdHV282UUVMamhUa3llVExLamptVkVnODBuYmFXSHdMT0YzWm5lVHNWdlNFTGZNZmYxazFMZWJHSEJhMVZOLXdxcUJUTzh1OHhXRlVZWHZSWi1RRllkd3dvWWc5OUZPSkN1a1JRd1U2QmxNdi1KRw?oc=5"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Evergy",
+        "topics": [
+          {
+            "summary": "Evergy is partnering with a company founded by Bill Gates to explore the expansion of nuclear power and energy storage in Kansas. This collaboration signifies a joint effort to advance new energy technologies in the region.",
+            "related_articles": [
+              {
+                "id": 8,
+                "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPYkNiNXNLdHdUWVZXUnZwbm8zWm85VGZWVkhwZDJKS1B3aXJvSzFMMjg2WTVXRE1ocEVrSkgtdzk5WjFlMmtzaGdHRnZXTkIyTks5TXlVY3RTZ3FUbGZ5dEVWd2VMSG8zNXVqLVhFWFJaaU5JSmpsSGdjN3ViMVBETGswY3NBZk9xd05pd0lhWDBPeTJkaVZnQkY5YVZKOUgzZGJZQjZ2cWVtWDhoRUV0LXFhTGs?oc=5"
+              },
+              {
+                "id": 9,
+                "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOVFJJdzRQbUZPTmpDOGRjNWlRbE16RjhsN2VxSk81ZDBGUzNfV2ZGcjVvdFRnaW1uNTJWQkVFUUtveXY5M2prOXVndXRGOWdfZks4WGQ3QjJjQ25BZXNoVlBQZUp6TDYyZW1BVWpMSlVvLVFJZWJldVdPUUZmS0RFOTdyamJwZ3o4TzFlSDdqTDA1b0dqUHFNdlg3U3RyUkpsY1BmUDNaQQ?oc=5"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "PJ Wendel",
+        "topics": [
+          {
+            "summary": "A radio program, 'Community Matters,' featured PJ Wendel on September 25, 2025. This indicates a broadcast discussing community-related topics with PJ Wendel as a guest or subject.",
+            "related_articles": [
+              {
+                "id": 10,
+                "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOS0pTOGF0N0ltU2FlaFBjTVdaQ19hZHc2SmZPSWltTGtsb0VLV2VpYXJPamYxcl9lZDFFQTJaRC1XNU9uaUVxUEozcWdyS2NqTlZIY1ZXZWJ1ZjlvLTBqeFMwcUJnemhBelRsQ1U1OGxhclB2Yll3SklESi1nNUhRYUtB?oc=5"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
