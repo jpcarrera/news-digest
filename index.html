@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Company News Digest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --bg:#0b0f14; --card:#121821; --ink:#e7eef7; --muted:#9fb0c3; --line:#263041; --accent:#5aa3ff; --ok:#3ddc97; --warn:#ffd166; --radius:14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg,#0a0e13 0%, #0f1722 100%), var(--bg); color:var(--ink);
+    }
+    .wrap{max-width:1100px; margin:32px auto; padding:0 16px 64px}
+    header{display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; margin-bottom:18px}
+    h1{font-size:24px; margin:0}
+    .sub{color:var(--muted); font-size:13px}
+    .toolbar{display:flex; gap:8px; flex-wrap:wrap}
+    input[type="search"]{
+      background:var(--card); color:var(--ink); border:1px solid var(--line); border-radius:999px; padding:10px 14px; min-width:260px;
+      outline:none; transition:border .15s ease;
+    }
+    input[type="search"]:focus{border-color:var(--accent)}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:var(--card); border:1px solid var(--line); color:var(--muted);
+      cursor:pointer; user-select:none;
+    }
+    .pill b{color:var(--ink)}
+    .company{
+      background:linear-gradient(180deg,#121826 0%, #0f1622 100%); border:1px solid var(--line); border-radius:var(--radius); padding:16px;
+      margin-top:16px; box-shadow:0 10px 24px rgba(0,0,0,.25);
+    }
+    .company > h2{margin:0 0 10px 0; font-size:20px}
+    .meta{display:flex; gap:16px; color:var(--muted); font-size:13px; margin-bottom:6px}
+    .topics{display:grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap:12px; margin-top:12px}
+    .topic{
+      background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px; display:flex; flex-direction:column; gap:10px;
+    }
+    .summary{font-size:14px}
+    .links{display:flex; flex-direction:column; gap:8px}
+    .links a{
+      text-decoration:none; display:flex; align-items:center; justify-content:space-between; gap:12px; background:#0d131c;
+      border:1px solid var(--line); border-radius:10px; padding:10px 12px; color:var(--ink);
+    }
+    .links a:hover{border-color:var(--accent); background:#0e1520}
+    .badge{font-size:12px; color:var(--accent); border:1px solid var(--accent); padding:2px 8px; border-radius:999px; background:rgba(90,163,255,.08)}
+    .host{color:var(--muted); font-size:12px}
+    .footer{margin-top:20px; color:var(--muted); font-size:12px; text-align:center}
+    .hidden{display:none !important}
+    .count{background:rgba(61,220,151,.15); color:var(--ok); border:1px solid rgba(61,220,151,.35); padding:2px 8px; border-radius:999px; font-size:12px}
+    .split{border-top:1px dashed var(--line); margin:16px 0}
+    .error{border:1px solid #ff6b6b; background:rgba(255,107,107,.12); color:#ffdede; padding:10px 12px; border-radius:10px; font-size:13px; margin-bottom:10px}
+    @media (prefers-color-scheme: light){
+      :root{--bg:#f6f7fb; --card:#ffffff; --ink:#0b0f14; --muted:#5b6b7c; --line:#e6eaf0; --accent:#0066ee; --accent-ink:#e7f1ff}
+      body{background:#f6f8fb}
+      .company{background:#ffffff}
+      .links a{background:#fbfcff}
+    }
+  </style>
+</head>
+<body>
+<div class="wrap" id="app">
+  <header>
+    <div>
+      <h1>Company News Digest</h1>
+      <div class="sub" id="subtitle">Loading data…</div>
+    </div>
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Filter by company, summary, or host…" aria-label="Filter news" />
+      <div class="pill" id="toggle-empty">
+        Hide companies with no topics
+        <input id="hideEmpty" type="checkbox" style="accent-color: var(--accent); margin-left:8px" />
+      </div>
+    </div>
+  </header>
+
+  <div id="status"></div>
+  <div id="companies"></div>
+  <div class="footer">Generated locally. JSON loaded dynamically from <code>data/news.json</code>.</div>
+</div>
+
+<script>
+const JSON_URL = './data/news.json';
+
+// Helpers
+const q = (sel, el=document) => el.querySelector(sel);
+const qc = (sel, el=document) => Array.from(el.querySelectorAll(sel));
+function getHost(url){ try{ return new URL(url).host.replace(/^www\./,''); }catch{ return ''; } }
+function normalise(str){ return (str||'').toLowerCase(); }
+
+// Count totals
+function countAll(data){
+  const companies = data?.[0]?.companies ?? [];
+  const companyCount = companies.length;
+  let topicCount = 0, articleCount = 0;
+  companies.forEach(c=>{
+    const t = c.topics ?? [];
+    topicCount += t.length;
+    t.forEach(tp => articleCount += (tp.related_articles ?? []).length);
+  });
+  return {companyCount, topicCount, articleCount};
+}
+
+// Render UI
+function render(data){
+  const mount = q('#companies');
+  mount.innerHTML = '';
+  const companies = data?.[0]?.companies ?? [];
+
+  companies.forEach(company=>{
+    const topics = company.topics ?? [];
+    const compEl = document.createElement('section');
+    compEl.className = 'company';
+    compEl.dataset.company = company.name;
+
+    const totalArticles = topics.reduce((n,t)=> n + (t.related_articles?.length||0), 0);
+
+    compEl.innerHTML = `
+      <h2>${company.name}</h2>
+      <div class="meta">
+        <span class="count">${topics.length} topics</span>
+        <span class="count">${totalArticles} articles</span>
+      </div>
+      <div class="topics"></div>
+    `;
+
+    const topicsWrap = q('.topics', compEl);
+
+    topics.forEach((topic, idx)=>{
+      const tEl = document.createElement('article');
+      tEl.className = 'topic';
+      tEl.dataset.summary = topic.summary;
+
+      const links = (topic.related_articles ?? []);
+      const linksHtml = links.map(a=>{
+        const host = getHost(a.link);
+        return `
+          <a href="${a.link}" target="_blank" rel="noopener noreferrer">
+            <span>Article #${a.id}</span>
+            <span class="host">${host}</span>
+          </a>
+        `;
+      }).join('');
+
+      tEl.innerHTML = `
+        <div class="badge">Topic ${idx+1}</div>
+        <div class="summary">${topic.summary}</div>
+        <div class="links">
+          ${linksHtml || '<span class="sub">No related articles.</span>'}
+        </div>
+      `;
+      topicsWrap.appendChild(tEl);
+    });
+
+    mount.appendChild(compEl);
+  });
+
+  const {companyCount, topicCount, articleCount} = countAll(data);
+  q('#subtitle').textContent = `Loaded ${companyCount} companies, ${topicCount} topics, ${articleCount} articles.`;
+  applyFilter();
+}
+
+// Filtering
+function applyFilter(){
+  const needle = normalise(q('#search').value);
+  const hideEmpty = q('#hideEmpty').checked;
+
+  qc('.company').forEach(comp=>{
+    const name = normalise(comp.dataset.company);
+    const topicEls = qc('.topic', comp);
+    let anyVisible = false;
+
+    topicEls.forEach(t=>{
+      const text = normalise(t.dataset.summary + ' ' + qc('a', t).map(a=>a.href).join(' '));
+      const visible = !needle || name.includes(needle) || text.includes(needle);
+      t.classList.toggle('hidden', !visible);
+      if (visible) anyVisible = true;
+    });
+
+    comp.classList.toggle('hidden', hideEmpty && !anyVisible);
+  });
+}
+
+// Loader
+async function loadData(){
+  const status = q('#status');
+  status.textContent = 'Fetching JSON…';
+  status.className = '';
+  try {
+    const res = await fetch(JSON_URL + '?v=' + Date.now(), {cache:'no-store'});
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    render(data);
+    status.textContent = 'Data loaded successfully.';
+    status.className = 'success';
+  } catch (err) {
+    status.textContent = 'Failed to load data: ' + err.message;
+    status.className = 'error';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  loadData();
+  q('#search').addEventListener('input', applyFilter);
+  q('#hideEmpty').addEventListener('change', applyFilter);
+});
+</script>
+</body>
+</html>
